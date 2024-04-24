@@ -1,0 +1,27 @@
+V = str(input("Qual opção?"))
+while V == "a" or V == "b" or V == "c" or V == "d":
+    if V == "a":
+        import datetime
+        hoje = datetime.datetime.now()
+        dia = int(input("Dia: "))
+        mes = int(input("Mês: "))
+        ano = int(input("Ano: "))
+        aniv = datetime.datetime(ano,mes,dia)
+        dif = hoje - aniv
+        dias = dif.days
+        print("Fazem", dias, "dias que você nasceu.")
+    if V == "b":
+        conta = int(input("Digite o número de sua conta bancária: "))
+        while conta < 1000 and conta > 9999:
+            print("Erro! Tente novamente.")
+            conta = int(input("Digite o número de sua conta bancária: "))
+        else:
+            u = conta % 10
+            d = int(conta / 10 % 10)
+            c = int(conta / 100 % 10)
+            m = int(conta / 1000 % 10)
+            R = (m * u + c * d)
+            V = R % 7
+            print("Digito verificador:", V)
+    if V == "c":
+        
