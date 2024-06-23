@@ -1,0 +1,32 @@
+import random
+import time
+
+def pesquisa_sequencial(vetor, chave):
+    inicio = time.time()
+    encontrado = False
+    for i in range(len(vetor)):
+        if vetor[i] == chave:
+            encontrado = True
+            indice = i
+            break
+    fim = time.time()
+    if encontrado:
+        return indice, (fim - inicio) * 1000
+    else:
+        return -1, (fim - inicio) * 1000
+
+def main_sequencial(tamanho_vetor):
+    vetor = [random.randint(0, tamanho_vetor * 10) for _ in range(tamanho_vetor)]
+    chave = random.randint(0, tamanho_vetor * 10)
+    print(f"Vetor gerado: {vetor}")
+    print(f"Chave de busca: {chave}")
+    indice, tempo_execucao = pesquisa_sequencial(vetor, chave)
+    if indice != -1:
+        print(f"A chave {chave} foi encontrada no índice {indice}.")
+    else:
+        print(f"A chave {chave} não foi encontrada no vetor.")
+    print(f"Tempo de execução da pesquisa sequencial: {tempo_execucao:.6f} ms")
+
+if __name__ == "__main__":
+    tamanho_vetor = int(input("Digite o tamanho do vetor: "))
+    main_sequencial(tamanho_vetor)
