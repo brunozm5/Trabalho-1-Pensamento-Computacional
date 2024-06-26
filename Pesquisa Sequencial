@@ -1,0 +1,27 @@
+import random
+
+def gerar(tamanho, max_valor):
+    return [random.randint(0, max_valor) for _ in range(tamanho)]
+
+def pesquisa_sequencial(vetor, valor):
+    for i in range(len(vetor)):
+        if vetor[i] == valor:
+            return i
+    return -1
+
+def main():
+    tamanho = int(input("Entre com o tamanho do vetor: "))
+    max_valor = tamanho * 10
+    vetor = gerar(tamanho, max_valor)
+
+    print("Vetor gerado:", vetor)
+
+    valor_pesquisa = int(input("Entre com o valor a ser pesquisado: "))
+
+    indice_sequencial = pesquisa_sequencial(vetor, valor_pesquisa)
+    if indice_sequencial != -1:
+        print(f"Valor encontrado na posição {indice_sequencial} (Pesquisa Sequencial)")
+    else:
+        print("Valor não encontrado (Pesquisa Sequencial)")
+
+main()
