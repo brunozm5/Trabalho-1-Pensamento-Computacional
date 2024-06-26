@@ -1,0 +1,37 @@
+import random
+
+def gerar_vetor(tamanho, max_valor):
+    return [random.randint(0, max_valor) for _ in range(tamanho)]
+
+def pesquisa_binaria(vetor, valor):
+    inicio = 0
+    fim = len(vetor) - 1
+    while inicio <= fim:
+        meio = (inicio + fim) // 2
+        if vetor[meio] == valor:
+            return meio
+        elif vetor[meio] < valor:
+            inicio = meio + 1
+        else:
+            fim = meio - 1
+    return -1
+
+def main():
+    tamanho = int(input("Entre com o tamanho do vetor: "))
+    max_valor = tamanho * 10
+    vetor = gerar_vetor(tamanho, max_valor)
+
+    print("Vetor gerado:", vetor)
+
+    valor_pesquisa = int(input("Entre com o valor a ser pesquisado: "))
+
+    vetor.sort()
+    print("Vetor ordenado:", vetor)
+
+    indice_binaria = pesquisa_binaria(vetor, valor_pesquisa)
+    if indice_binaria != -1:
+        print(f"Valor encontrado na posição {indice_binaria} (Pesquisa Binária)")
+    else:
+        print("Valor não encontrado (Pesquisa Binária)")
+
+main()
