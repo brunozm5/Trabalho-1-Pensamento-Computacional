@@ -1,0 +1,92 @@
+1.
+def gerar_intervalo_incrementado(n, i):
+    if n < 0 or i <= 0:
+        raise ValueError("N deve ser positivo e o incremento deve ser maior que 0.")
+    return list(range(0, n + 1, i))
+
+2. 
+def obter_numeros_paridade(n, c):
+    if c not in ['p', 'i']:
+        raise ValueError("O caractere deve ser 'p' para pares ou 'i' para ímpares.")
+    if c == 'p':
+        return [x for x in range(1, n) if x % 2 == 0]
+    else:
+        return [x for x in range(1, n) if x % 2 != 0]
+
+3.
+def filtra_numeros(numeros):
+    def tem_caracteristica_especial(num):
+        str_num = str(num)
+        if len(str_num) != 4:
+            return False
+        parte1 = int(str_num[:2])
+        parte2 = int(str_num[2:])
+        return (parte1 + parte2) ** 2 == num
+
+    return [num for num in numeros if tem_caracteristica_especial(num)]
+
+4.
+def calcula_h(n):
+    return sum(1 / i for i in range(1, n + 1))
+
+5.
+def trocar_elementos(vet):
+    n = len(vet)
+    for i in range(n // 2):
+        vet[i], vet[n - i - 1] = vet[n - i - 1], vet[i]
+    return vet
+
+6.
+def bubble_sort(values, reverse=False):
+    n = len(values)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if (values[j] > values[j+1] and not reverse) or (values[j] < values[j+1] and reverse):
+                values[j], values[j+1] = values[j+1], values[j]
+    return values
+
+def binary_search(values, target):
+    sorted_values = bubble_sort(values.copy())
+    left, right = 0, len(sorted_values) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if sorted_values[mid] == target:
+            return mid
+        elif sorted_values[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+
+7.
+def eh_palindromo(s):
+    s = s.replace(" ", "").lower()
+    return s == s[::-1]
+
+8.
+def intercala(s1, s2):
+    s3 = ''.join(a + b for a, b in zip(s1, s2))
+    s3 += s1[len(s2):] + s2[len(s1):]
+    return s3
+
+def desintercala(s3, s2):
+    s1 = s3[::2]
+    return s1
+
+9.
+def imprime_gradual(s):
+    meio = len(s) // 2
+    for i in range(meio + 1):
+        print(s[meio - i:meio + i + 1])
+
+10.
+def filtrar(texto, denylist):
+    def substituir(palavra):
+        for proibida in denylist:
+            if palavra.lower() == proibida.lower():
+                return '*' * len(palavra)
+        return palavra
+
+    palavras = texto.split()
+    palavras_filtradas = [substituir(palavra) for palavra in palavras]
+    return ' '.join(palavras_filtradas)
